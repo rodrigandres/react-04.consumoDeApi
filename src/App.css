@@ -1,0 +1,21 @@
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  font-family: 'Nunito', sans-serif !important;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-image: linear-gradient(to top, #4FC0D0 0%, #1B6B93 100%);
+}
+
+
+.card {
+  padding: 2em;
+  background-color: #A2FF86;
+}
+
