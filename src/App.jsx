@@ -7,9 +7,7 @@ import { Container } from 'react-bootstrap';
 
 const App = () => {
   const [searchText, setSearchText] = useState('');
-  const [filterBy, setFilterBy] = useState('all');
   const [data, setData] = useState({});
-
 
   const handleSearch = (searchText) => {
     setSearchText(searchText);
@@ -27,16 +25,8 @@ const App = () => {
     )
   };
 
-  const filteredAndSortedGames =  [] //getFilteredAndSortedGames();
-
   function getFilteredAndSortedGames(sortBy) {
     let filteredGames = {...data};
-
-    if (filterBy !== 'all') {
-      filteredGames = filteredGames.filter(
-        (game) => game.teams.away.teamId === filterBy || game.teams.home.teamId === filterBy
-      );
-    }
 
     if (sortBy === 'date' && filteredGames.dates) {
       filteredGames.dates[0].games.sort((a, b) => new Date(a.gameDate) - new Date(b.gameDate));
@@ -45,18 +35,14 @@ const App = () => {
         a.teams.away.team.name.localeCompare(b.teams.away.team.name)
       );
     }
-
-    console.log('filtered game:', filteredGames)
-    setData(filteredGames)
-    return filteredGames;
+    setData(filteredGames);
   }
-
 
   return (
     <Container fluid>
-      <h2>MLB Schedule</h2>
-      <Buscador onSearch={handleSearch}/>
-      <FilterButton onFilterAndSort={getFilteredAndSortedGames} mlbStats={data} filteredAndSortedGames={filteredAndSortedGames} filterBy={filterBy}/>
+      <h1>MLB Schedule</h1>
+      <Buscador searchText={searchText} setSearchText={setSearchText} onSearch={handleSearch}/>
+      <FilterButton onFilterAndSort={getFilteredAndSortedGames} mlbStats={data}/>
       <MiApi {...{data, setData, filterTeams}} />
     </Container>
   );

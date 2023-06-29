@@ -5,7 +5,6 @@ const FilterButton = ({ onFilterAndSort }) => {
     const [sortBy, setSortBy] = useState('date');
 
     const handleSortChange = (eventKey) => {
-      console.log('eventKEY:', eventKey)
       setSortBy(eventKey);
     };
 
@@ -26,11 +25,10 @@ const FilterButton = ({ onFilterAndSort }) => {
               Date
             </Dropdown.Item>
             <Dropdown.Item eventKey="team" onClick={() => handleSortChange("team")}>
-              Team
+              A-Z
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-  
         <Button variant="info" className="mt-2" onClick={handleClick}>
           Aplicar
         </Button>
